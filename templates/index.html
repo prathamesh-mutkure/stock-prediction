@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stock Market Predictor</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Arimo"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Hind:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+
+    <style></style>
+  </head>
+
+  <body>
+    <div class="login">
+      <h1>Stock Price Prediction</h1>
+      <h3>Enter the following values to predict the price of any stock</h3>
+
+      <!-- Main Input For Receiving Query to our ML -->
+      <form action=" {{ url_for('predict')}} " method="post">
+        <input
+          type="text"
+          name="symbol"
+          placeholder="Stock Symbol"
+          required="required"
+        />
+        <input
+          type="text"
+          name="predict_days"
+          placeholder="Predict Days"
+          required="required"
+        />
+        <div class="custom-select">
+          <select name="model_name">
+            <option value="0">Select ML Model:</option>
+            <option value="1">Random Forest</option>
+            <option value="2">SVR</option>
+            <option value="3">Linear Regeression</option>
+            <option value="4">Decision Tree</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn">Predict</button>
+      </form>
+    </div>
+  </body>
+</html>

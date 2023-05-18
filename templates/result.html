@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stock Market Predictor</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Arimo"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Hind:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+
+    <style></style>
+  </head>
+
+  <body>
+    <div class="login">
+      <h1>Stock Price Prediction</h1>
+
+      {% if prediction_text %}
+
+      <div class="score">
+        <p class="result"><b>{{ model_score }}</b></p>
+      </div>
+
+      <p class="result"><b>{{ prediction_text }}</b></p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Prediction</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% set counter = 0 %} {% for row in arr %}
+          <tr>
+            <td>{{ counter + 1 }}</td>
+            <td>{{ row }}</td>
+          </tr>
+          {% set counter = counter + 1 %} {% endfor %}
+        </tbody>
+      </table>
+
+      <form method="post" action="/plot_image">
+        <button type="submit" class="btn">Plot Image</button>
+      </form>
+      {% endif %}
+    </div>
+  </body>
+</html>
